@@ -1,5 +1,11 @@
 const controllerWrapper = require("../helpers/controllerWrapper");
-
+const {
+  listContacts,
+  getContactById,
+  removeContact,
+  addContact,
+  updateContactById,
+} = require("../services/contactsServices");
 const HttpError = require("../helpers/HttpError");
 const contacts = require("../db/contacts.json");
 

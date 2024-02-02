@@ -10,8 +10,10 @@ const {
 const contactsRouter = express.Router();
 
 const validateBody = require("../helpers/validateBody");
-const createContactSchema = require("../schemas/contactsSchemas");
-const updateContactSchema = require("../schemas/contactsSchemas");
+const {
+  createContactSchema,
+  updateContactSchema,
+} = require("../schemas/contactsSchemas");
 
 contactsRouter.get("/", getAllContacts);
 

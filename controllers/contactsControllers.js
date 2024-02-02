@@ -7,17 +7,16 @@ const {
   updateContactById,
 } = require("../services/contactsServices");
 const HttpError = require("../helpers/HttpError");
-const contacts = require("../db/contacts.json");
 
 const getAllContacts = async (req, res, next) => {
-  const result = await contacts.listContacts();
+  const result = await listContacts();
   console.log("result", result);
   res.status(200).json(result);
 };
 
 const getOneContact = async (req, res, next) => {
   const { id } = req.params;
-  const result = await contacts.getContactById(id);
+  const result = await getContactById(id);
   if (!result) {
     throw HttpError(404);
   }
@@ -26,7 +25,7 @@ const getOneContact = async (req, res, next) => {
 
 const deleteContact = async (req, res, next) => {
   const { id } = req.params;
-  const result = await contacts.removeContact(id);
+  const result = await removeContact(id);
   if (!result) {
     throw HttpError(404);
   }
@@ -34,14 +33,15 @@ const deleteContact = async (req, res, next) => {
 };
 
 const createContact = async (req, res, next) => {
-  const result = await contacts.addContact(req.body);
+  const { name, email, phone } = req.body;
+  const result = await addContact(name, email, phone);
   res.status(201).json(result);
 };
 
 const updateContact = async (req, res) => {
   const { id } = req.params;
   const { name, email, phone } = req.body;
-  const result = await contacts.updateContactById(
+  const result = await updateContactById(
     id,
     name,
     email,

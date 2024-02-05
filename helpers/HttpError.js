@@ -15,4 +15,4 @@ const HttpError = (
   return error;
 };
 
-export default HttpError;
+module.exports = HttpError;
